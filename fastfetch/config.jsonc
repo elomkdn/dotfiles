@@ -1,0 +1,51 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json",
+  "display": {
+    "separator": "  ",
+    "percent": { "type": ["num", "num-color", "bar"] },
+    "bar": {
+      "char": { "elapsed": "━", "total": "─" },
+      "border": { "left": "", "right": "" },
+      "color": { "total": "90" },
+      "width": 10
+    }
+  },
+  "modules": [
+    "break",
+    {
+      "type": "title",
+      "color": {
+        "user": "green",
+        "at": "white",
+        "host": "cyan"
+      }
+    },
+    "break",
+
+    { "type": "os",       "key": "",         "keyColor": "cyan",    "format": "CachyOS" },
+    { "type": "kernel",   "key": "",   "keyColor": "white" },
+    { "type": "de",       "key": "",   "keyColor": "blue",    "format": "{pretty-name} {version}" },
+    { "type": "packages", "key": "󰆦",   "keyColor": "yellow",    "format": "{all} paquets" },
+    { "type": "shell",    "key": "󰈺",   "keyColor": "cyan" },
+    { "type": "terminal", "key": "",         "keyColor": "green",    "format": "{pretty-name}" },
+    { "type": "uptime",   "key": "󰥔",   "keyColor": "white",    "format": "{?days}{days}j {?}{hours}h {minutes}min" },
+
+    "break",
+
+    { "type": "host",    "key": "\udb80\udf22",    "keyColor": "white" },
+    { "type": "cpu",     "key": "\udb83\udee0",    "keyColor": "blue",   "format": "Intel Core i7-10750H" },
+    { "type": "gpu",     "key": "\udb82\udcae",    "keyColor": "blue",   "hideType": "discrete",   "format": "{1} {2}" },
+    { "type": "gpu",     "key": "\udb82\udcae",    "keyColor": "green",   "hideType": "integrated", "format": "NVIDIA GeForce GTX 1650 Ti" },
+    { "type": "display", "key": "\udb81\udd02",    "keyColor": "cyan",   "format": "{1}x{2} @ {3} Hz" },
+    { "type": "memory",  "key": "\udb81\ude1a",    "keyColor": "green",   "format": "{used} / {total}" },
+    { "type": "disk",    "key": "\udb80\udeca",    "keyColor": "white",   "folders": "/", "format": "{size-used} / {size-total}" },
+    { "type": "battery", "key": "\udb80\udc79",    "keyColor": "green",   "format": "{4}" },
+
+    "break",
+
+    {
+      "type": "custom",
+      "format": "{#33}󰮯 {#37}• • • {#31}󰊠 {#35}󰊠 {#36}󰊠 {#33}󰊠 {#32}󰊠 {#34}󰊠 {#37}󰊠"
+    }
+  ]
+}
