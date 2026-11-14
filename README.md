@@ -3,7 +3,7 @@
 ## Restaurer
 
 ```sh
-git clone <url> ~/Projets/dotfiles
+git clone https://github.com/elomkdn/dotfiles.git ~/Projets/dotfiles
 mkdir -p ~/.config/fastfetch
 ln -sf ~/Projets/dotfiles/fastfetch/config.jsonc ~/.config/fastfetch/config.jsonc
 ```
