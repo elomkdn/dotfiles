@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Lagoon status line for Claude Code: a teal pill with the model, then the folder,
-# the git branch, the context window as a water gauge and the 5-hour quota. Colors follow
+# the git branch, the context window with the fish and the 5-hour quota as a water gauge. Colors follow
 # the Bowl widget's water: teal, yellow from 50 %, peach from 75 %, red from 90 %.
 # Needs a Nerd Font and jq.
 
@@ -49,10 +49,16 @@ if [[ -n $dir ]] && branch=$(git -C "$dir" branch --show-current 2>/dev/null) &&
     && out+=" $(rgb "$PEACH")●$R"
 fi
 
-# Context window: the lagoon fills up
+# Context window: the fish
 if [[ $pct != - ]]; then
   level "$pct"
-  cells=8 full=$(( (pct * 8 + 50) / 100 )); (( full > cells )) && full=$cells
+  out+="$SEP$(rgb "$c")$FISH $pct%$R"
+fi
+
+# The 5-hour quota, as in the Bowl widget (subscribers only): the lagoon fills up
+if [[ $quota != - ]]; then
+  level "$quota"
+  cells=8 full=$(( (quota * 8 + 50) / 100 )); (( full > cells )) && full=$cells
   # A ripple runs along the water, one cell per second (refreshInterval: 1),
   # then rests for three seconds before the next one
   ripple=$(( ${EPOCHSECONDS:-$(date +%s)} % (full + 3) ))
@@ -61,13 +67,7 @@ if [[ $pct != - ]]; then
     if (( i == ripple )); then bar+="$(rgb "$s")━"; else bar+="$(rgb "$c")━"; fi
   done
   bar+="$(rgb "$SURF1")"; for ((i = full; i < cells; i++)); do bar+='━'; done
-  out+="$SEP$(rgb "$c")$DROP $bar $(rgb "$c")$pct%$R"
-fi
-
-# The 5-hour quota, as in the Bowl widget (subscribers only)
-if [[ $quota != - ]]; then
-  level "$quota"
-  out+="$SEP$(rgb "$c")$FISH $quota%$R"
+  out+="$SEP$(rgb "$c")$DROP $bar $(rgb "$c")$quota%$R"
 fi
 
 printf '%s' "$out"

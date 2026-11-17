@@ -4,8 +4,6 @@
   "overrides": {
     "claude": "#94e2d5",
     "claudeShimmer": "#b9ece4",
-    "clawd_body": "#94e2d5",
-    "clawd_background": "#1e1e2e",
     "briefLabelClaude": "#94e2d5",
     "briefLabelYou": "#89b4fa",
     "autoAccept": "#cba6f7",
