@@ -13,14 +13,16 @@ const C = {
   peach: '#fab387',
   maroon: '#eba0ac',
   rosewater: '#f5e0dc',
+  deepTeal: '#5fb3a6',
+  foam: '#b9ece4',
   eye: '#11111b',
 }
 
-// Bowl's fish, 5 dots by 3, drawn twice as big, with two bubbles rising ahead of it
+// Bowl's fish in Lagoon's teal, 5 dots by 3, drawn twice as big, with two bubbles rising ahead of it
 const FISH: readonly string[] = ['f.f..', '.bbeb', 'f.bb.']
 const DOTS: (string | undefined)[][] = (() => {
   const grid: (string | undefined)[][] = Array.from({ length: 6 }, () => Array.from({ length: 14 }, () => undefined))
-  const paint: Record<string, string> = { f: C.maroon, b: C.peach, e: C.eye }
+  const paint: Record<string, string> = { f: C.deepTeal, b: C.teal, e: C.eye }
   FISH.forEach((row, y) =>
     [...row].forEach((d, x) => {
       const color = paint[d]
@@ -33,7 +35,7 @@ const DOTS: (string | undefined)[][] = (() => {
   )
   const put = (x: number, y: number) => {
     const line = grid[y]
-    if (line) line[x] = C.rosewater
+    if (line) line[x] = C.foam
   }
   put(11, 2)
   put(13, 0)
@@ -47,7 +49,8 @@ export const register: Register = on => {
     return next(e)
   })
 
-  // A fish swims in its pond beside the spinner, which keeps its time and tokens
+  // A fish swims in its pond beside the spinner, which keeps its time and tokens. The
+  // spinner's block opens on an empty row: the pond starts one row down, on the spinner's text
   on('ui.render', { component: 'Spinner' }, async ($, e, next) => {
     if (e.surface !== 'terminal') return next(e)
     const { Box, Client } = $.ui.resolve(e)
@@ -55,7 +58,9 @@ export const register: Register = on => {
 
     return (
       <Box flexDirection="row">
-        <Client key="fish" module="./fish.tsx" width={10} height={1} />
+        <Box marginTop={1} flexShrink={0}>
+          <Client key="fish" module="./fish.tsx" width={10} height={1} />
+        </Box>
         {line}
       </Box>
     )
