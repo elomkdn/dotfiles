@@ -30,3 +30,18 @@ Puis dans `~/.claude/settings.json` :
 ```
 
 La barre de statut demande `jq` et une police Nerd Font.
+
+#### Le mod seul
+
+Pour installer seulement le mod « lagoon », sans cloner ce dépôt, dans une session Claude Code :
+
+```
+/plugin install lagoon --marketplace elomkdn/dotfiles
+```
+
+Répondre `y` pour ajouter la source, puis choisir la portée (utilisateur, la première). Depuis un
+shell : `claude plugin install lagoon --marketplace elomkdn/dotfiles`. Dans l’application de
+bureau, où `/plugin` n’existe pas : + à côté de la zone de saisie, Plugins, Add marketplace avec
+`elomkdn/dotfiles`, puis Add plugin.
+
+Le mod va avec le thème `custom:lagoon` ci-dessus, mais marche sans.

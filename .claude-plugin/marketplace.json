@@ -1,0 +1,11 @@
+{
+  "name": "elomkdn",
+  "owner": { "name": "elomkdn" },
+  "plugins": [
+    {
+      "name": "lagoon",
+      "source": "./claude-code/mods/lagoon",
+      "description": "Lagoon touches for Claude Code: a fish by the spinner, a welcome banner and bubbles on tool calls"
+    }
+  ]
+}
